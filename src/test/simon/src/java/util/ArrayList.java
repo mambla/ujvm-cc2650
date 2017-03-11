@@ -43,9 +43,9 @@ public class ArrayList {
         
         int[] oldData = mElements;
         int newCapacity = (oldCapacity * 3)/2 + 1;
-        if (newCapacity < minCapacity)
+        if (newCapacity < minCapacity) {
             newCapacity = minCapacity;
-        // minCapacity is usually close to size, so this is a win:
+        }
         
         mElements = new int[newCapacity];
     	for (int i = 0; i < oldCapacity; ++i) {

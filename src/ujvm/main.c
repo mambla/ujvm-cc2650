@@ -31,7 +31,7 @@
  */
 
 /*
- *  ======== empty.c ========
+ *  ======== main.c ========
  */
 /* XDCtools Header files */
 #include <xdc/std.h>
@@ -200,7 +200,7 @@ void print_flash()
     System_printf("Last 16 bytes: %s \n", print_buf);
 }
 
-Void mainFxn(UArg arg0, UArg arg1)
+Void ujvmFxn(UArg arg0, UArg arg1)
 {
     if (uart_handle == 0)
     {
@@ -243,7 +243,7 @@ Void flashFxn(UArg arg0, UArg arg1)
             print_flash();
             break;
         case RUN_JAVA:
-            mainFxn(arg0, arg1);
+            ujvmFxn(arg0, arg1);
         default:
             System_printf("Received incorrect command %c\n", command); System_flush();
         }
@@ -261,12 +261,6 @@ void buttonCallbackFxn(PIN_Handle handle, PIN_Id pinId) {
     }
 }
 
-/*
- * - implement uart driver (configurable with traces)
- * - add deep sleep for battery conservation
- * - refactoring
- * - write html
- */
 int main(void)
 {
     Task_Params taskParams = {0};
@@ -292,14 +286,13 @@ int main(void)
    if (PIN_registerIntCb(button_pin_handle, &buttonCallbackFxn) != 0) {
        System_abort("Error registering button callback function");
    }
-   int i = 0;
+
     UART_Params uartParams;
     UART_Params_init(&uartParams);
     uartParams.baudRate = 115200;
     uart_handle = UART_open(Board_UART, &uartParams);
 
     System_printf("Yo Yo Yo\n"); System_flush();
-    		   /* Construct heartBeat Task  thread */
 
 	Task_Params_init(&taskParams);
 	Task_construct(&task0Struct, (Task_FuncPtr)flashFxn, &taskParams, NULL);

@@ -1,4 +1,3 @@
-import cc2650.UC;
 import simon.Simon;
 
 public class Main {
