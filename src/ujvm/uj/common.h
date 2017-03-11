@@ -245,6 +245,9 @@ void err(const char* str);
 	void flashWrite(UInt16 addr, UInt8 val);
 	void flashErase(UInt16 addr, UInt16 size);
 
+// Sleep api
+	void deepSleep(UInt32 ms);
+
 //character LCD api
 	void clcdClear(void);
 	void clcdGotoXY(UInt8 x, UInt8 y);

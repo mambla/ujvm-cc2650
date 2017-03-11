@@ -292,6 +292,15 @@ static UInt8 natUc_flashRead(struct UjThread* t, _UNUSED_ struct UjClass* cls){
 	return ujThreadPush(t, flashRead(addr), false) ? UJ_ERR_NONE : UJ_ERR_STACK_SPACE;
 }
 
+static UInt8 natUc_deepSleep(struct UjThread* t, _UNUSED_ struct UjClass* cls){
+
+    UInt32 ms = ujThreadPop(t);
+
+    deepSleep(ms);
+
+    return UJ_ERR_NONE;
+}
+
 static UInt8 natUc_pwmSetBri(struct UjThread* t, _UNUSED_ struct UjClass* cls){
 
 	UInt8 bri = ujThreadPop(t);
@@ -493,6 +502,11 @@ const UjNativeClass nativeCls_UC =
             {   "flashErase",    //(I)-> B
                 "(II)V",
                 natUc_flashErase,
+                JAVA_ACC_PUBLIC | JAVA_ACC_NATIVE | JAVA_ACC_STATIC
+            },
+            {   "deepSleep",    //(I)-> B
+                "(I)V",
+                natUc_deepSleep,
                 JAVA_ACC_PUBLIC | JAVA_ACC_NATIVE | JAVA_ACC_STATIC
             },
             {   "clearLastButtonPress",   //(I)-> B

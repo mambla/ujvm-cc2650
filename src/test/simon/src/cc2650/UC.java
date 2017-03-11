@@ -19,6 +19,10 @@ public class UC {
 	public static byte flashRead(int addr){return 0;}
 	public static void flashErase(int addr, int size){}
 	
+// Sleep
+	public static void deepSleep(int ms) {}
+	
+	
 // Button
 	public static void clearLastButtonPress(int button){}
 	public static int getLastButtonPress(int button){return 0;}
