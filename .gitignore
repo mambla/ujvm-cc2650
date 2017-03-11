@@ -1,0 +1,10 @@
+classes/
+raw/
+workspace/
+.idea/
+src/flashprog/src/
+Debug/
+Release/
+src/ujvm/src/
+.config/
+.settings/
