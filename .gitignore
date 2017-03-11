@@ -8,3 +8,9 @@ Release/
 src/ujvm/src/
 .config/
 .settings/
+
+*.obj
+*.class
+*.d
+*.so
+*.xdchelp
