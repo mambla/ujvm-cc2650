@@ -262,13 +262,9 @@ void buttonCallbackFxn(PIN_Handle handle, PIN_Id pinId) {
 }
 
 /*
- * - Print to uart
  * - print buffer instead of one character at a time
  * - implement uart driver (configurable with traces)
- * - implement gpio driver
  * - implement spi / eeprom driver
- * - reinstate static initializers
- * - spi read caching (maybe)
  * - add deep sleep for battery conservation
  * - refactoring
  * - write html

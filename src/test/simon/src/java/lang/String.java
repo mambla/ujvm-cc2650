@@ -20,33 +20,7 @@ public class String extends MiniString{
 		String.print("\r\n");
 	}
 	
-	/*
-		this class is FORBIDDEN from having any instance variables dues to how it inherits from
-			uj.lang.miniString and how we construct these in the VM
-	*/
-	
-
-	
-	/* -- untested
-	public String substring(int beginIndex, int endIndex){
-	
-		//this is not the right way to do this - will only work for ascii!
-		byte[] arr = new byte[endIndex - beginIndex];
-		int i;
-		
-		for(i = beginIndex; i < endIndex; i++){
-			
-			arr[i - beginIndex] = XbyteAt_(i);
-		}
-		
-		return MiniString.Xnew_(arr);
+	public static String valueOf(int i) {
+		return Integer.toString(i);
 	}
-	
-	public String substring(int beginIndex){
-	
-		return substring(beginIndex, length());
-	}
-	*/
-	
-	
 }

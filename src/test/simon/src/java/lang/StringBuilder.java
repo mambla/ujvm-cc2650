@@ -9,13 +9,6 @@ public class StringBuilder{
 		bytes = new byte[0];
 	}
 	
-	/* -- untested
-	public StringBuilder(int cap){
-	
-		bytes = new byte[0];
-	}
-	*/
-	
 	public StringBuilder append(String s){
 	
 		int i, j;
@@ -60,23 +53,6 @@ public class StringBuilder{
 	
 		return append(new String(str));
 	}
-
-
-	/* -- untested
-	public StringBuilder insert(int offset, char c){
-	
-		int i;
-		append(" ");	//make space	
-		
-		for(i = bytes.length - 1; i < offset; i--){
-		
-			bytes[i + 1] = bytes[i];
-		}
-		bytes[offset] = (byte)c;
-		
-		return this;
-	}
-	*/
 	
 	public StringBuilder append(Object o){
 	

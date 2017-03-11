@@ -42,12 +42,14 @@ public class Simon {
 			
 			signalSuccess();
 						
-			String.println("Finished stage: ");
+			String.print("Finished stage: ");
+			String.println(Integer.toString(stage));
 			Thread.sleep(500);
 			stage++;
 		}
 		
-		String.println("Game Over! Your score is: ");
+		String.print("Game Over! Your score is: ");
+		String.println(Integer.toString(stage - 1));
 	}
 	
 	private boolean testPattern(ArrayList pattern) throws Exception {
