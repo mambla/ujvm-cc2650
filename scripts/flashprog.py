@@ -22,12 +22,12 @@ def main():
 				stopbits=serial.STOPBITS_ONE,
 				parity=serial.PARITY_NONE) as port:
 			file_size = os.path.getsize(file_path)
-			invoke_print(port, file_size)
-			time.sleep(2)
-			write_file_to_serial_port(port, f, os.path.getsize(file_path))
-			time.sleep(2)
-			invoke_print(port, file_size)
-			time.sleep(2)
+			# invoke_print(port, file_size)
+			# time.sleep(0.5)
+			write_file_to_serial_port(port, f, file_size)
+			time.sleep(0.5)
+			# invoke_print(port, file_size)
+			# time.sleep(1)
 			invoke_java(port)
 
 
@@ -39,7 +39,7 @@ def invoke_print(port, size):
 
 	print 'Board ready for printing'
 
-	time.sleep(1)
+	time.sleep(0.1)
 
 	port.write(struct.pack('I', size))
 
@@ -56,7 +56,7 @@ def write_file_to_serial_port(port, file, size):
 
 	print 'Board ready for programming'
 
-	time.sleep(1)
+	time.sleep(0.1)
 	port.write(struct.pack('II', size, CHUNK_SIZE))
 
 	if port.read(1) != 'r':
@@ -74,7 +74,7 @@ def write_file_to_serial_port(port, file, size):
 
 		print 'Sending chunk %d' % i
 
-		time.sleep(1)
+		time.sleep(0.1)
 		port.write(data)
 
 		print 'Waiting for ack'

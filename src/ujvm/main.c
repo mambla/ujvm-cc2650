@@ -115,7 +115,7 @@ void read_all_bytes(uint8_t* buf, uint32_t size)
 
 void sleep(uint32_t ms)
 {
-    Task_sleep(ms);
+    Task_sleep(ms * 100);
 }
 
 void write_flash()
@@ -123,7 +123,7 @@ void write_flash()
     SizeInfo size_info = {0};
     System_printf("Received write status\n"); System_flush();
 
-    sleep(500);
+    sleep(10);
     write_status(WRITE);
 
     System_printf("Sent start status\n"); System_flush();
@@ -144,7 +144,7 @@ void write_flash()
         return;
     }
 
-    sleep(500);
+    sleep(10);
     write_status(READY);
 
     uint32_t current = 0;
@@ -164,13 +164,13 @@ void write_flash()
             return;
         }
 
-        sleep(500);
+        sleep(10);
         write_status(CHUNK);
 
         System_printf("Acked chunk at offset %u\n", current); System_flush();
     }
 
-    sleep(500);
+    sleep(10);
     write_status(FINISHED);
     System_printf("Done!\n"); System_flush();
 }
@@ -180,7 +180,7 @@ void print_flash()
     uint32_t size = 0;
     System_printf("Received print status\n"); System_flush();
 
-    sleep(500);
+    sleep(10);
     write_status(PRINT);
 
     System_printf("Sent print status\n"); System_flush();

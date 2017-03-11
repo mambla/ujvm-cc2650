@@ -202,6 +202,7 @@ void err(const char* str);
     #include <ti/drivers/UART.h>
     #include <ti/drivers/PIN.h>
     #include <ti/sysbios/knl/Clock.h>
+    #include <ti/sysbios/knl/Task.h>
 #endif
 
 #ifdef UJ_LOG

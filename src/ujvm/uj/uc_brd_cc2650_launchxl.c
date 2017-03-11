@@ -46,7 +46,7 @@ void flashErase(UInt16 addr, UInt16 size){
 
 void deepSleep(UInt32 ms)
 {
-
+    Task_sleep(ms * (getClkTicksPerSec() / 1000));
 }
 
 Boolean pwmSet(UInt8 which, UInt8 bri){
