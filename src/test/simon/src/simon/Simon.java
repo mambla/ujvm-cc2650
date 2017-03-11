@@ -13,19 +13,22 @@ public class Simon {
 	private final GpioPin mRed;
 	private final GpioPin mGreen;
 	private final Random mRandom;
+	private final HighScoreManager mHighScoreManager;
 	
 	public Simon() {
+		String.println("Welcome to Simon");
+		
 		mRed = LED.Red();
 		mGreen = LED.Green();
 		mRandom = new Random();
+		
+		mHighScoreManager = new HighScoreManager();
 	}
 	
-	public void startGame() throws Exception{
-		String.println("Welcome to Simon");
-		
+	public void startGame() throws Exception{	
 		waitForGameReady();
 		
-		String.println("Starting game");
+		String.println("Starting a new game...");
 
 		ArrayList pattern = new ArrayList();
 		int stage = 1;
@@ -48,8 +51,11 @@ public class Simon {
 			stage++;
 		}
 		
+		int score = stage - 1;
 		String.print("Game Over! Your score is: ");
-		String.println(Integer.toString(stage - 1));
+		String.println(Integer.toString(score));
+		
+		mHighScoreManager.updateHighScore(score);
 	}
 	
 	private boolean testPattern(ArrayList pattern) throws Exception {

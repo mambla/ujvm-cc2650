@@ -254,30 +254,42 @@ static UInt8 natUc_getLastButtonPress(struct UjThread* t, _UNUSED_ struct UjClas
     return ujThreadPush(t, getLastButtonPress(ujThreadPop(t)), false) ? UJ_ERR_NONE : UJ_ERR_STACK_SPACE;
 }
 
-static UInt8 natUc_eepromSize(struct UjThread* t, _UNUSED_ struct UjClass* cls){
+static UInt8 natUc_flashSize(struct UjThread* t, _UNUSED_ struct UjClass* cls){
 
-	return ujThreadPush(t, EEPROM_SIZE, false) ? UJ_ERR_NONE : UJ_ERR_STACK_SPACE;
+	return ujThreadPush(t, FLASH_SIZE, false) ? UJ_ERR_NONE : UJ_ERR_STACK_SPACE;
 }
 
-static UInt8 natUc_eepromWrite(struct UjThread* t, _UNUSED_ struct UjClass* cls){
+static UInt8 natUc_flashWrite(struct UjThread* t, _UNUSED_ struct UjClass* cls){
 
 	UInt8 val = ujThreadPop(t);
 	UInt32 addr = ujThreadPop(t);
 
-	if(addr >= EEPROM_SIZE) return UJ_ERR_ARRAY_INDEX_OOB;
+	if(addr >= FLASH_SIZE) return UJ_ERR_ARRAY_INDEX_OOB;
 
-	eepromWrite(addr, val);
+	flashWrite(addr, val);
 
 	return UJ_ERR_NONE;
 }
 
-static UInt8 natUc_eepromRead(struct UjThread* t, _UNUSED_ struct UjClass* cls){
+static UInt8 natUc_flashErase(struct UjThread* t, _UNUSED_ struct UjClass* cls){
+
+    UInt16 size = ujThreadPop(t);
+    UInt32 addr = ujThreadPop(t);
+
+    if(addr >= FLASH_SIZE) return UJ_ERR_ARRAY_INDEX_OOB;
+
+    flashErase(addr, size);
+
+    return UJ_ERR_NONE;
+}
+
+static UInt8 natUc_flashRead(struct UjThread* t, _UNUSED_ struct UjClass* cls){
 
 	UInt32 addr = ujThreadPop(t);
 
-	if(addr >= EEPROM_SIZE) return UJ_ERR_ARRAY_INDEX_OOB;
+	if(addr >= FLASH_SIZE) return UJ_ERR_ARRAY_INDEX_OOB;
 
-	return ujThreadPush(t, eepromRead(addr), false) ? UJ_ERR_NONE : UJ_ERR_STACK_SPACE;
+	return ujThreadPush(t, flashRead(addr), false) ? UJ_ERR_NONE : UJ_ERR_STACK_SPACE;
 }
 
 static UInt8 natUc_pwmSetBri(struct UjThread* t, _UNUSED_ struct UjClass* cls){
@@ -403,7 +415,7 @@ const UjNativeClass nativeCls_UC =
 		NULL,
 		NULL,
 		
-		18
+		19
 	#ifdef HAVE_CHAR_LCD
 		+4
 	#endif
@@ -463,21 +475,26 @@ const UjNativeClass nativeCls_UC =
 				natUc_gpioSetHi,
 				JAVA_ACC_PUBLIC | JAVA_ACC_NATIVE | JAVA_ACC_STATIC
 			},
-			{	"eepromSize",	//()-> I
+			{	"flashSize",	//()-> I
 				"()I",
-				natUc_eepromSize,
+				natUc_flashSize,
 				JAVA_ACC_PUBLIC | JAVA_ACC_NATIVE | JAVA_ACC_STATIC
 			},
-			{	"eepromWrite",	//(IB)-> ()
+			{	"flashWrite",	//(IB)-> ()
 				"(IB)V",
-				natUc_eepromWrite,
+				natUc_flashWrite,
 				JAVA_ACC_PUBLIC | JAVA_ACC_NATIVE | JAVA_ACC_STATIC
 			},
-			{	"eepromRead",	//(I)-> B
+			{	"flashRead",	//(I)-> B
 				"(I)B",
-				natUc_eepromRead,
+				natUc_flashRead,
 				JAVA_ACC_PUBLIC | JAVA_ACC_NATIVE | JAVA_ACC_STATIC
 			},
+            {   "flashErase",    //(I)-> B
+                "(II)V",
+                natUc_flashErase,
+                JAVA_ACC_PUBLIC | JAVA_ACC_NATIVE | JAVA_ACC_STATIC
+            },
             {   "clearLastButtonPress",   //(I)-> B
                 "(I)V",
                 natUc_clearLastButtonPress,

@@ -161,11 +161,10 @@ void err(const char* str);
 #elif defined (BOARD_CC2650_LAUNCHPAD)
 	#define F_CPU				48000000UL
 	#define HEAP_SZ				(12 * 1024)
-	#define FLASHROM_PAGE		256UL		//in bytes
-	#define EEPROM_SIZE (64UL*1024UL)
-    #define FLASHROM_SIZE       (1024UL*1024UL - EEPROM_SIZE)
-	#define GPIO_PORTS 100
-	#define GPIO_PINS_PER_PORT 100
+	#define FLASH_SIZE (64UL*1024UL)
+    #define FLASHROM_SIZE       (1024UL*1024UL - FLASH_SIZE)
+	#define GPIO_PORTS 1
+	#define GPIO_PINS_PER_PORT 20
 #else
 
 	#error "NO BOARD_* macro defined"
@@ -241,9 +240,10 @@ void err(const char* str);
 	void clearLastButtonPress(UInt32 buttonToQuery);
 	UInt8 getLastButtonPress(UInt32 buttonToQuery);
 
-//EEPROM api
-	UInt8 eepromRead(UInt16 addr);
-	void eepromWrite(UInt16 addr, UInt8 val);
+//Flash api
+	UInt8 flashRead(UInt16 addr);
+	void flashWrite(UInt16 addr, UInt8 val);
+	void flashErase(UInt16 addr, UInt16 size);
 
 //character LCD api
 	void clcdClear(void);

@@ -14,9 +14,10 @@ public class UC {
 	public static void gpioSetHi(int port, int pin, boolean isOutput){}	//if input, make it a pullup
 	
 //EEPROM
-	public static int eepromSize(){return 0;}
-	public static void eepromWrite(int addr, byte val){}
-	public static byte eepromRead(int addr){return 0;}
+	public static int flashSize(){return 0;}
+	public static void flashWrite(int addr, byte val){}
+	public static byte flashRead(int addr){return 0;}
+	public static void flashErase(int addr, int size){}
 	
 // Button
 	public static void clearLastButtonPress(int button){}

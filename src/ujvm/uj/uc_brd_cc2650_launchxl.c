@@ -29,12 +29,19 @@ Boolean gpioGetVal(UInt8 port, UInt8 pin){
     return PIN_getOutputValue(pin);
 }
 
-UInt8 eepromRead(UInt16 addr){
+UInt8 flashRead(UInt16 addr){
     return pgm_read(FLASHROM_SIZE + addr);
 }
 
-void eepromWrite(UInt16 addr, UInt8 val){
-    pgm_write(addr, val);
+void flashWrite(UInt16 addr, UInt8 val){
+    pgm_write(FLASHROM_SIZE + addr, val);
+}
+
+void flashErase(UInt16 addr, UInt16 size){
+    while (!ExtFlash_erase(FLASHROM_SIZE + addr, size))
+    {
+        ujLog("Ahhhhh!!");
+    }
 }
 
 Boolean pwmSet(UInt8 which, UInt8 bri){
@@ -275,7 +282,7 @@ void uart_putchar(char c)
 
 void pgm_write(UInt32 addr, UInt8 val)
 {
-    if (!ExtFlash_write(addr, sizeof(val), &val))
+    while (!ExtFlash_write(addr, sizeof(val), &val))
     {
         ujLog("Ahhhhh!!");
     }
