@@ -77,7 +77,7 @@ public class Simon {
 	}
 	
 	private void waitForGameReady() throws Exception {
-		String.println("Press any button to play");
+		String.println("Press any button to begin");
 		
 		GameReadyIndicator gameReadyIndicator = new GameReadyIndicator();
 		
