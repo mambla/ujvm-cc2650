@@ -18,8 +18,8 @@ This is a port of uJ for the TI CC2650 LAUNCHXL.
 ## Usage
 1. Compile and flash the ujvm project to your board.
 2. Write a java project using the framework classes found in src/test/simon.
-3. Run **python scripts/process_class_dir.py <path to java project classes root> <output file> --class_cvt bin/classCvt** in order to concatenate the class files into one file
-3. Run **python flashprog.py <output file>** in order to send the java classes to the ujvm (which saves them in the SPI flash).
+3. Run **python scripts/process_class_dir.py path_to_java_project_classes_root output_file --class_cvt bin/classCvt** in order to concatenate the class files into one file
+3. Run **python flashprog.py output_file** in order to send the java classes to the ujvm (which saves them in the SPI flash).
 4. Open some serial terminal (115200, 8, 1, None) in order to see the program prints
 
 ## License
