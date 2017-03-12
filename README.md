@@ -1,6 +1,6 @@
 # ujvm-cc2650
 
-This is a port of uJ for the TI CC2650 LAUNCHXL. 
+This is a port of [uJ](http://dmitry.gr/index.php?r=05.Projects&proj=12.%20uJ%20-%20a%20micro%20JVM) for the TI CC2650 LAUNCHXL. 
 
 ## Features
 * Full support of java bytecode including threading, exceptions, and all data types (double, long, float) by the uJ jvm.
@@ -13,7 +13,7 @@ This is a port of uJ for the TI CC2650 LAUNCHXL.
 * src/flashprog/ - A small program that can be used to program the SPI flash over UART (without the jvm)
 * src/ujvm/ - The uJ jvm port
 * src/test/simon/ - contains an implementation of the game of Simon using the CC2650 LAUNCHXL LEDs and buttons
-* bin/ - contains the classCvt binary used to optimize class files which was provided as part of A [uJ](http://dmitry.gr/index.php?r=05.Projects&proj=12.%20uJ%20-%20a%20micro%20JVM)
+* bin/ - contains the classCvt binary used to optimize class files which was provided as part of [uJ](http://dmitry.gr/index.php?r=05.Projects&proj=12.%20uJ%20-%20a%20micro%20JVM)
 
 ## Usage
 1. Compile and flash the ujvm project to your board.
@@ -24,5 +24,5 @@ This is a port of uJ for the TI CC2650 LAUNCHXL.
 
 ## License
 
-Original uJ code and license can be found A [here](http://dmitry.gr/index.php?r=05.Projects&proj=12.%20uJ%20-%20a%20micro%20JVM).
+Original uJ code and license can be found [here](http://dmitry.gr/index.php?r=05.Projects&proj=12.%20uJ%20-%20a%20micro%20JVM).
 
